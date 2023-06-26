@@ -1,0 +1,18 @@
+.container {
+  display: flex;
+  justify-content: space-around;
+  .link {
+    font-size: 1.4rem;
+    color: #000;
+    &:hover {
+      color: rgb(120, 212, 212);
+      transition: all 1s;
+    }
+  }
+}
+.hr {
+  width: 100%;
+
+  border: 1px solid #000;
+  margin-top: 5%;
+}

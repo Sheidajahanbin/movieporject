@@ -1,0 +1,26 @@
+.boxPoster {
+  width: 250px;
+  height: 400px;
+  border: 1px solid #ccc;
+  box-shadow: rgba(39, 38, 37, 0.35) 0px -2px 6px 0px inset;
+  border: 1px solid rgba(39, 38, 37, 0.5);
+  border-radius: 5px;
+}
+.boxPoster > div {
+  margin-top: 5px;
+  text-align: center;
+}
+.boxPoster > div .poster {
+  width: 200px;
+  height: 200px;
+}
+.boxPoster .sectionTitle {
+  width: 250px;
+  height: 100px;
+  text-align: center;
+  text-transform: capitalize;
+  line-height: 7px;
+}
+.boxPoster .sectionTitle .title {
+  font-weight: bolder;
+}/*# sourceMappingURL=postermovies.css.map */

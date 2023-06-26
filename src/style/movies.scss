@@ -1,0 +1,16 @@
+.mainContainer {
+  display: flex;
+  margin-top: 10px;
+}
+.a {
+  width: 80%;
+  display: flex;
+  justify-content: space-around;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.b {
+  width: 20%;
+ 
+}
