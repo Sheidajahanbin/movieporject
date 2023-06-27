@@ -21,6 +21,7 @@ class Movies extends Component {
       ],
 
       posts: [],
+      fiterposts: [],
       isError: false,
       arrygenre: [],
       i: 0,
@@ -37,8 +38,9 @@ class Movies extends Component {
       // .then((genres) => (console.log(genres)))
       .catch(() => this.setState({ isError: true }));
   };
+  11;
   render() {
-    const { isError, posts, images, genres, arrygenre } = this.state;
+    const { isError, posts, images, genres, arrygenre, i } = this.state;
 
     return (
       <div className="mainContainer">
@@ -71,14 +73,29 @@ class Movies extends Component {
 
             {posts.map((post) => {
               let temp = post.Genre.split(", ");
-              temp.forEach((genre) => {
-                let flg = arrygenre.forEach((x) => x === genre);
-                if (!flg) {
+
+              temp.map((genre) => {
+                //  let x = arrygenre.filter(
+                //     (a, b) => arrygenre.indexOf(a) === b
+
+                //   );
+                
                   this.setState({ arrygenre: arrygenre.push(genre) });
+                
+
+                // const newarry = arrygenre.filter((arry) => arry !== genre);
+                // this.setState({ arrygenre: arrygenre.push(newarry) });
+
+                // temp.filter((genre) =>
+                //   // let flg = arrygenre.forEach((arry) => arry === genre);
+
+                //   // if (!flg) {
+                // );
+                {
+                  console.log(arrygenre);
                 }
               });
             })}
-            {console.log(arrygenre)}
             <Searchmovie />
           </div>
         </div>
