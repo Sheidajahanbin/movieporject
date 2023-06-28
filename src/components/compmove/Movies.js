@@ -40,7 +40,8 @@ class Movies extends Component {
   };
   11;
   render() {
-    const { isError, posts, images, genres, arrygenre, i } = this.state;
+    const { isError, posts, images, genres, arrygenre, fiterposts } =
+      this.state;
 
     return (
       <div className="mainContainer">
@@ -75,26 +76,16 @@ class Movies extends Component {
               let temp = post.Genre.split(", ");
 
               temp.map((genre) => {
-                //  let x = arrygenre.filter(
-                //     (a, b) => arrygenre.indexOf(a) === b
-
-                //   );
-                
-                  this.setState({ arrygenre: arrygenre.push(genre) });
-                
-
-                // const newarry = arrygenre.filter((arry) => arry !== genre);
-                // this.setState({ arrygenre: arrygenre.push(newarry) });
-
-                // temp.filter((genre) =>
-                //   // let flg = arrygenre.forEach((arry) => arry === genre);
-
-                //   // if (!flg) {
-                // );
-                {
-                  console.log(arrygenre);
-                }
+                this.setState({ fiterposts: fiterposts.push(genre) });
               });
+              const newarry = fiterposts.filter(
+                (item, index, arrygenre) => arrygenre.indexOf(item) === index
+              );
+              {
+                console.log(newarry);
+              }
+              this.setState({ arrygenre: newarry });
+              console.log(arrygenre);
             })}
             <Searchmovie />
           </div>
