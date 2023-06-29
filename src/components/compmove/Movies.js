@@ -24,23 +24,37 @@ class Movies extends Component {
       filterposts: [],
       isError: false,
       arrygenre: [],
-      i: 0,
     };
-  }
-  componentDidMount = () => {
-    this.getData();
   };
-  getData = () => {
+  filterGenre = () => {
+  const {posts,filterposts,arrygenre}=this.state;
+
+    console.log(posts);
+    posts.map((post) => {
+      const temp =post.Genre.split(", ");
+      temp.map((genre) => {
+        filterposts = filterposts.push(genre);
+      });
+        const res = filterposts.filter(
+          (item, index) => filterposts.indexOf(item) === index
+        );
+        this.setState({ arrygenre:res });
+        console.log(arrygenre);
+     
+    });
+  };
+
+ 
+  componentDidMount= () => {
     axios
       .get("movies.json")
       .then((response) => this.setState({ posts: response.data }))
-      // .then((response) => this.setState({ genres:Genre }))
-      // .then((genres) => (console.log(genres)))
+      .then(() => this.filterGenre())
       .catch(() => this.setState({ isError: true }));
   };
-  11;
+
   render() {
-    const { isError, posts, images, genres, arrygenre, filterposts } =
+    const { isError, posts, images, arrygenre } =
       this.state;
 
     return (
@@ -71,8 +85,7 @@ class Movies extends Component {
                 placeholder="search by movie title.."
               />
             </div>
-
-            {posts.map((post) => {
+            {/* {posts.map((post) => {
               let temp = post.Genre.split(", ");
 
               temp.map((genre) => {
@@ -85,10 +98,8 @@ class Movies extends Component {
                   filterposts.indexOf(item) === index
               );
               this.setState({ arrygenre: x});
-              {console.log(arrygenre)}
-
-              <Searchmovie {...arrygenre} />;
-            })}
+              {console.log(arrygenre)} */}
+            <Searchmovie {...arrygenre} />   {/* })} */}
           </div>
         </div>
       </div>
