@@ -21,7 +21,7 @@ class Movies extends Component {
       ],
 
       posts: [],
-      fiterposts: [],
+      filterposts: [],
       isError: false,
       arrygenre: [],
       i: 0,
@@ -40,7 +40,7 @@ class Movies extends Component {
   };
   11;
   render() {
-    const { isError, posts, images, genres, arrygenre, fiterposts } =
+    const { isError, posts, images, genres, arrygenre, filterposts } =
       this.state;
 
     return (
@@ -76,18 +76,19 @@ class Movies extends Component {
               let temp = post.Genre.split(", ");
 
               temp.map((genre) => {
-                this.setState({ fiterposts: fiterposts.push(genre) });
+                filterposts: filterposts.push(genre);
+               
               });
-              const newarry = fiterposts.filter(
-                (item, index, arrygenre) => arrygenre.indexOf(item) === index
+
+              const x = filterposts.filter(
+                (item, index) =>
+                  filterposts.indexOf(item) === index
               );
-              {
-                console.log(newarry);
-              }
-              this.setState({ arrygenre: newarry });
-              console.log(arrygenre);
+              this.setState({ arrygenre: x});
+              {console.log(arrygenre)}
+
+              <Searchmovie {...arrygenre} />;
             })}
-            <Searchmovie />
           </div>
         </div>
       </div>
