@@ -39,7 +39,7 @@ class Movies extends Component {
           (item, index) => filterposts.indexOf(item) === index
         );
         this.setState({ arrygenre:res });
-        console.log(arrygenre);
+        // console.log(arrygenre);
      
     });
   };
