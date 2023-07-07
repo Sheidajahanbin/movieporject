@@ -9,11 +9,11 @@ class Searchmovie extends Component {
     super(props);
   }
   render() {
-    const { ...arrygenre } = this.props;
+    const { ...genres } = this.props;
     return (
       <div className="btnCenter">
         <div>
-          <Link to="Btnssearch/">{arrygenre[5]}</Link>
+          <buttom to="Btnssearch/">{genres[5]}</buttom>
         </div>
       </div>
     )

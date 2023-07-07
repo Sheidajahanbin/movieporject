@@ -1,16 +1,25 @@
 .mainContainer {
   display: flex;
   margin-top: 10px;
-}
-.a {
-  width: 80%;
-  display: flex;
-  justify-content: space-around;
-  gap: 10px;
-  flex-wrap: wrap;
-}
 
-.b {
-  width: 20%;
- 
+  .a {
+    width: 80%;
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .b {
+    width: 20%;
+  }
+  .btn-genre {
+    button {
+      width: 200px;
+      height: 35px;
+      background-color: rgb(7, 8, 8);
+      color: aliceblue;
+      margin-top: 7px;
+    }
+  }
 }

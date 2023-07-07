@@ -21,42 +21,70 @@ class Movies extends Component {
       ],
 
       posts: [],
-      filterposts: [],
+      moveis: [],
+      filterGenre: [],
       isError: false,
-      arrygenre: [],
+      genres: [],
     };
-  };
-  filterGenre = () => {
-  const {posts,filterposts,arrygenre}=this.state;
+  }
 
-    console.log(posts);
-    posts.map((post) => {
-      const temp =post.Genre.split(", ");
-      temp.map((genre) => {
-        filterposts = filterposts.push(genre);
-      });
-        const res = filterposts.filter(
-          (item, index) => filterposts.indexOf(item) === index
-        );
-        this.setState({ arrygenre:res });
-        // console.log(arrygenre);
-     
-    });
-  };
-
- 
-  componentDidMount= () => {
+  componentDidMount = () => {
     axios
       .get("movies.json")
-      .then((response) => this.setState({ posts: response.data }))
-      .then(() => this.filterGenre())
+      .then((response) =>
+        this.setState({ posts: response.data, moveis: response.data }, () =>
+          this.filterGenre()
+        )
+      )
+
       .catch(() => this.setState({ isError: true }));
   };
 
-  render() {
-    const { isError, posts, images, arrygenre } =
-      this.state;
+  filterGenre = () => {
+    var arry = [];
+    this.state.posts.map((post) => {
+      const genres = post.Genre.split(", ");
 
+      genres.map((genre) => {
+        if (arry.indexOf(genre) === -1) {
+          arry.push(genre);
+        }
+      });
+    });
+
+    this.setState({ genres: arry });
+
+    console.log(arry);
+    console.log(this.state.genres);
+  };
+  ////////////////////////////////////////////////////////////////////////
+  addRemoveGenre = (genre) => {
+    const index = this.state.filterGenre.indexOf(genre);
+    if (index === -1) {
+      this.state.filterGenre.push(genre);
+    } else {
+      this.state.filterGenre.splice(index, 1);
+    }
+  };
+  ///////////////////////////////////////////////////////////////////
+  // filterBygenreHandle=(genre)=>{
+  //  this.addRemoveGenre(genre);
+  //  temp=[];
+  //  this.state.filterGenre.map((genre)=>{
+  // const selMovie =this.state.moveis.filter((movei)=>
+  //   movei.Genre.includes(genre)
+  //   );
+  //   selMovie.map((move)=>{
+  //     if(temp.indexOf(move)===-1){
+  //       temp.push(move);
+  //     }
+  //   });
+  //  }
+
+  // }
+
+  render() {
+    const { isError, posts, images, genres } = this.state;
     return (
       <div className="mainContainer">
         <div className="a">
@@ -84,22 +112,13 @@ class Movies extends Component {
                 id="search"
                 placeholder="search by movie title.."
               />
+            </div >
+            <div className="btn-genre">
+            {genres.map((genre) => (
+              <button>{genre}</button>
+            ))}
             </div>
-            {/* {posts.map((post) => {
-              let temp = post.Genre.split(", ");
-
-              temp.map((genre) => {
-                filterposts: filterposts.push(genre);
-               
-              });
-
-              const x = filterposts.filter(
-                (item, index) =>
-                  filterposts.indexOf(item) === index
-              );
-              this.setState({ arrygenre: x});
-              {console.log(arrygenre)} */}
-            <Searchmovie {...arrygenre} />   {/* })} */}
+           
           </div>
         </div>
       </div>
