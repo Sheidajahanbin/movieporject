@@ -27,20 +27,20 @@ class Movies extends Component {
       genres: [],
     };
   }
-
+//////////////////////////////////////////////////////////////////////////////////
   componentDidMount = () => {
     axios
       .get("movies.json")
       .then((response) =>
         this.setState({ posts: response.data, moveis: response.data }, () =>
-          this.filterGenre()
+          this.filterGenreHandler()
         )
       )
 
       .catch(() => this.setState({ isError: true }));
   };
 
-  filterGenre = () => {
+  filterGenreHandler = () => {
     var arry = [];
     this.state.posts.map((post) => {
       const genres = post.Genre.split(", ");
@@ -54,8 +54,6 @@ class Movies extends Component {
 
     this.setState({ genres: arry });
 
-    console.log(arry);
-    console.log(this.state.genres);
   };
   ////////////////////////////////////////////////////////////////////////
   addRemoveGenre = (genre) => {
@@ -67,21 +65,22 @@ class Movies extends Component {
     }
   };
   ///////////////////////////////////////////////////////////////////
-  // filterBygenreHandle=(genre)=>{
-  //  this.addRemoveGenre(genre);
-  //  temp=[];
-  //  this.state.filterGenre.map((genre)=>{
-  // const selMovie =this.state.moveis.filter((movei)=>
-  //   movei.Genre.includes(genre)
-  //   );
-  //   selMovie.map((move)=>{
-  //     if(temp.indexOf(move)===-1){
-  //       temp.push(move);
-  //     }
-  //   });
-  //  }
-
-  // }
+  filterBygenreHandler = (genre) => {
+    this.addRemoveGenre(genre);
+    let temp = [];
+    this.state.filterGenre.map((genre) => {
+      const selMovie = this.state.moveis.filter((movei) =>
+        movei.Genre.includes(genre)
+      );
+      selMovie.map((move) => {
+        if (temp.indexOf(move) === -1) {
+          temp.push(move);
+        }
+      });
+      console.log(temp);
+    });
+    this.setState({ posts: temp });
+  };
 
   render() {
     const { isError, posts, images, genres } = this.state;
@@ -112,13 +111,17 @@ class Movies extends Component {
                 id="search"
                 placeholder="search by movie title.."
               />
-            </div >
-            <div className="btn-genre">
-            {genres.map((genre) => (
-              <button>{genre}</button>
-            ))}
             </div>
-           
+            <div className="btn-genre">
+              {genres.map((genre, index) => (
+                <button
+                  key={index}
+                  onClick={() => this.filterBygenreHandler(genre)}
+                >
+                  {genre}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       </div>
