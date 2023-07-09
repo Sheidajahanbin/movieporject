@@ -25,9 +25,10 @@ class Movies extends Component {
       filterGenre: [],
       isError: false,
       genres: [],
+      searchTitle: "",
     };
   }
-//////////////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////////////
   componentDidMount = () => {
     axios
       .get("movies.json")
@@ -53,9 +54,18 @@ class Movies extends Component {
     });
 
     this.setState({ genres: arry });
-
   };
   ////////////////////////////////////////////////////////////////////////
+  ChangeSearch = (event) => {
+    this.setState({
+      [event.target.name]: event.target.value,
+      posts: this.state.moveis.filter((move) => 
+        move.Title.toLowerCase().includes(event.target.value.toLowerCase())
+      ),
+    });
+  };
+
+  ////////////////////////////////////////////////////////////////////////////
   addRemoveGenre = (genre) => {
     const index = this.state.filterGenre.indexOf(genre);
     if (index === -1) {
@@ -81,7 +91,7 @@ class Movies extends Component {
     });
     this.setState({ posts: temp });
   };
-
+  ///////////////////////////////////////////////////////////////////
   render() {
     const { isError, posts, images, genres } = this.state;
     return (
@@ -106,10 +116,12 @@ class Movies extends Component {
           <div className="containerSearch">
             <div className="boxSearch">
               <input
-                type="search"
-                name="search"
+                type="text"
+                name="searchTitle"
                 id="search"
                 placeholder="search by movie title.."
+                value={this.state.searchTitle}
+                onChange={this.ChangeSearch}
               />
             </div>
             <div className="btn-genre">

@@ -13,7 +13,7 @@ class Searchmovie extends Component {
     return (
       <div className="btnCenter">
         <div>
-          <buttom to="Btnssearch/">{genres[5]}</buttom>
+          <buttom to="Btnssearch/">{genres}</buttom>
         </div>
       </div>
     )
