@@ -59,7 +59,7 @@ class Movies extends Component {
   ChangeSearch = (event) => {
     this.setState({
       [event.target.name]: event.target.value,
-      posts: this.state.moveis.filter((move) => 
+      posts: this.state.moveis.filter((move) =>
         move.Title.toLowerCase().includes(event.target.value.toLowerCase())
       ),
     });
@@ -120,7 +120,7 @@ class Movies extends Component {
                 name="searchTitle"
                 id="search"
                 placeholder="search by movie title.."
-                value={this.state.searchTitle}
+                value={this.state.name}
                 onChange={this.ChangeSearch}
               />
             </div>
